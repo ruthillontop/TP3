@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block aerolinea %}
+<h3>Resultado de la búsqueda:</h3>
+
+<ul>
+    {% for empleado in empleados %}
+        <li>{{ empleado.nombreempleado }} - {{ empleado.email }} - {{ empleado.tipo }} ({{ empleado.antiguedad }} años)</li>
+    {% empty %}
+        <li>No se encontraron empleados con ese nombre.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

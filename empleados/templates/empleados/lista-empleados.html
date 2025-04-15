@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block aerolinea %}
+
+<div>
+    
+    <ul>
+        {% for empleado in empleados %}
+            <li>{{ empleado.nombreempleado }} - {{empleado.email}} </li>
+            {{empleado.antiguedad}} años
+            </br>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
