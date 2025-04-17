@@ -35,7 +35,7 @@ def alta_destinos(request):
 
 def lista_destinos(request):
 
-    modelos = destinos.objects.all()
+    modelos = Destinos.objects.all()
     contexto = {
         "destinos": modelos
     }
@@ -51,11 +51,11 @@ def buscar_destinos(request):
         formulario = DestinosBusquedaForm(request.POST)
 
         if formulario.is_valid():
-            ciudad = formulario.cleaned_data["ciudad"]
-            pais = Destinos.objects.filter(nombre__icontains=ciudad)
+            country = formulario.cleaned_data["pais"]
+            pais = Destinos.objects.filter(pais__icontains=country)
 
             contexto = {
-                "destinos": destinos,
+                "destinos": pais,
             }
             return render(request, 'destinos/detail_destinos.html', context=contexto)
         
