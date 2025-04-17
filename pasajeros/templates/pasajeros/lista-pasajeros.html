@@ -1,0 +1,15 @@
+{% extends 'pasajeros/base.html' %}
+
+{% block aerolinea %}
+
+<div>
+    
+    <ul>
+        {% for pasajero in pasajeros %}
+            <li>{{ pasajero.nombrepax }} - {{pasajero.email}} </li>
+            {{pasajero.status}} - {{pasajero.viajero_frecuente}}
+            </br>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

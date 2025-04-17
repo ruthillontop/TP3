@@ -1,0 +1,13 @@
+{% extends 'destinos/base.html' %}
+
+{% block aerolinea %}
+<h3>Resultado de la búsqueda:</h3>
+
+<ul>
+    {% for destinos in destinos %}
+        <li>{{ destino.ciudad }} - {{destino.pais} }</li>
+    {% empty %}
+        <li>No se encontraron destinos con ese nombre.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

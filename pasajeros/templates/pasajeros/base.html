@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Llontop - Aerolínea{% endblock %}</title>
+
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .navbar {
+            background-color: #003366;
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 30px;
+        }
+        .menu {
+            position: relative;
+        }
+        .menu > a {
+            color: #f2f2f2;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 5px;
+        }
+        .menu:hover > a {
+            color: #ffffff;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #004080;
+            padding: 10px;
+            border-radius: 4px;
+            z-index: 1000;
+        }
+        .submenu a {
+            display: block;
+            color: #f2f2f2;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        .submenu a:hover {
+            background-color: #0059b3;
+        }
+        .menu:hover .submenu {
+            display: block;
+        }
+        .container {
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="menu">
+                <a href="{% url 'empleados:index_empleados' %}">Empleados</a>
+                <div class="submenu">
+                    <a href="{% url 'empleados:alta-empleados' %}">Alta Empleados</a>
+                    <a href="{% url 'empleados:buscar-empleados' %}">Buscar Empleados</a>
+                    <a href="{% url 'empleados:lista-empleados' %}">Lista de Empleados</a>
+                </div>
+            </div>
+
+            <div class="menu">
+                <a href="{% url 'pasajeros:index_pasajeros' %}">Pasajeros</a>
+                <div class="submenu">
+                    <a href="{% url 'pasajeros:alta-pasajeros' %}">Alta Pasajeros</a>
+                    <a href="{% url 'pasajeros:buscar-pasajeros' %}">Buscar Pasajeros</a>
+                    <a href="{% url 'pasajeros:lista-pasajeros' %}">Lista de Pasajeros</a>
+                </div>
+            </div>
+
+            <div class="menu">
+                <a href="{% url 'destinos:index_destinos' %}">Destinos</a>
+                <div class="submenu">
+                    <a href="{% url 'destinos:alta-destinos' %}">Alta Destinos</a>
+                    <a href="{% url 'destinos:buscar-destinos' %}">Buscar Destinos</a>
+                    <a href="{% url 'destinos:lista-destinos' %}">Lista de Destinos</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        {% block aerolinea %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

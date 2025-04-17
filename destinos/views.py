@@ -37,7 +37,7 @@ def lista_destinos(request):
 
     modelos = destinos.objects.all()
     contexto = {
-        "lugares": modelos
+        "destinos": modelos
     }
     return render(request, 'destinos/lista-destinos.html', context=contexto)
 
@@ -45,7 +45,7 @@ def lista_destinos(request):
 def buscar_destinos(request):
     if request.method == "GET":
        contexto = {"formulario": DestinosBusquedaForm()}
-       return render(request, 'empleados/buscar-empleados.html', context=contexto)
+       return render(request, 'destinos/buscar-destinos.html', context=contexto)
     else:
         # procesamos el formulario y devolvemos un resultado
         formulario = DestinosBusquedaForm(request.POST)

@@ -1,0 +1,13 @@
+{% extends 'pasajeros/base.html' %}
+
+{% block aerolinea %}
+<h3>Resultado de la búsqueda:</h3>
+
+<ul>
+    {% for pasajero in pasajeros %}
+        <li>{{ pasajero.nombrepax }} - {{ pasajero.email }} - {{ pasajero.tipo }} {{ pasajero.antiguedad }} </li>
+    {% empty %}
+        <li>No se encontraron pasajeros con ese nombre.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

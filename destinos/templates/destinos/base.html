@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Llontop - Aerolínea{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
     <style>
         /* Estilos generales */
         body {
@@ -13,24 +13,46 @@
             color: #333;
         }
         .navbar {
-            background-color: #003366; /* Azul oscuro */
+            background-color: #003366;
             padding: 1rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
+            gap: 30px;
         }
-        .navbar a {
-            color: #f2f2f2; /* Blanco perlado */
+        .menu {
+            position: relative;
+        }
+        .menu > a {
+            color: #f2f2f2;
             text-decoration: none;
-            margin: 0 15px;
             font-size: 1.1rem;
+            padding: 5px;
         }
-        .navbar a:hover {
+        .menu:hover > a {
             color: #ffffff;
         }
-        .slogan {
-            color: #99CCFF; /* Azul medio */
-            font-size: 1.3rem;
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #004080;
+            padding: 10px;
+            border-radius: 4px;
+            z-index: 1000;
+        }
+        .submenu a {
+            display: block;
+            color: #f2f2f2;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        .submenu a:hover {
+            background-color: #0059b3;
+        }
+        .menu:hover .submenu {
+            display: block;
         }
         .container {
             margin: 20px;
@@ -44,29 +66,37 @@
 
     <header>
         <div class="navbar">
-            <a href="{% url 'empleados' %}">Empleados</a>
-            <a href="{% url 'pasajeros' %}">Pasajeros</a>
-            <a href="{% url 'destinos' %}">Destinos</a>
-            <div class="slogan">"On top of the world"</div>
-            <nav>
-                <a href="{% url 'empleados:alta-empleados' %}">Empleados</a>
-                <a href="{% url 'empleados:buscar-empleados' %}">Buscar Empleados</a>
-                <a href="{% url 'empleados:lista-empleados' %}">Lista de Empleados</a>
-                <a href="{% url 'destinos:alta-destinos' %}">Destinos</a>
-                <a href="{% url 'destinos:buscar-destinos' %}">Buscar Destinos</a>
-                <a href="{% url 'destinos:lista-destinos' %}">Lista de Destinos</a>
-                <a href="{% url 'pasajeros:alta-pasajeros' %}">Alta Pasajeros</a>
-                <a href="{% url 'pasajeros:buscar-pasajeros' %}">Buscar Pasajeros</a>
-                <a href="{% url 'pasajeros:lista-pasajeros' %}">Lista de Pasajeros</a>
+            <div class="menu">
+                <a href="{% url 'empleados:index_empleados' %}">Empleados</a>
+                <div class="submenu">
+                    <a href="{% url 'empleados:alta-empleados' %}">Alta Empleados</a>
+                    <a href="{% url 'empleados:buscar-empleados' %}">Buscar Empleados</a>
+                    <a href="{% url 'empleados:lista-empleados' %}">Lista de Empleados</a>
+                </div>
+            </div>
 
+            <div class="menu">
+                <a href="{% url 'pasajeros:index_pasajeros' %}">Pasajeros</a>
+                <div class="submenu">
+                    <a href="{% url 'pasajeros:alta-pasajeros' %}">Alta Pasajeros</a>
+                    <a href="{% url 'pasajeros:buscar-pasajeros' %}">Buscar Pasajeros</a>
+                    <a href="{% url 'pasajeros:lista-pasajeros' %}">Lista de Pasajeros</a>
+                </div>
+            </div>
 
-            </nav>
+            <div class="menu">
+                <a href="{% url 'destinos:index_destinos' %}">Destinos</a>
+                <div class="submenu">
+                    <a href="{% url 'destinos:alta-destinos' %}">Alta Destinos</a>
+                    <a href="{% url 'destinos:buscar-destinos' %}">Buscar Destinos</a>
+                    <a href="{% url 'destinos:lista-destinos' %}">Lista de Destinos</a>
+                </div>
+            </div>
         </div>
     </header>
 
     <div class="container">
         {% block aerolinea %}
-
         {% endblock %}
     </div>
 

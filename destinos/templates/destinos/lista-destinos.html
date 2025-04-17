@@ -1,0 +1,15 @@
+{% extends 'destinos/base.html' %}
+
+{% block aerolinea %}
+
+<div>
+    
+    <ul>
+        {% for destinos in destinos %}
+            <li>{{ destinos.ciudad }} - {{destinos.pais}} </li>
+           
+            </br>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

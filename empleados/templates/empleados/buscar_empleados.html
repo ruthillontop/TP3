@@ -1,0 +1,14 @@
+{% extends 'empleados/base.html' %}
+
+{% block aerolinea %}
+
+<h3 >Buscar empleado:</h3>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ formulario.as_p }}
+    <button type="submit"> Enviar formulario</button>
+</form>
+
+
+{% endblock %}

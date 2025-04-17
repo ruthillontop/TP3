@@ -37,15 +37,15 @@ def lista_empleados(request):
 
     modelos = Empleados.objects.all()
     contexto = {
-        "trabajadores": modelos
+        "empleados": modelos
     }
-    return render(request, 'empleados/lista-empleados.html', context=contexto)
+    return render(request, 'empleados/lista_empleados.html', context=contexto)
 
 
 def buscar_empleados(request):
     if request.method == "GET":
        contexto = {"formulario": EmpleadosBusquedaForm()}
-       return render(request, 'empleados/buscar-empleados.html', context=contexto)
+       return render(request, 'empleados/buscar_empleados.html', context=contexto)
     else:
         # procesamos el formulario y devolvemos un resultado
         formulario = EmpleadosBusquedaForm(request.POST)

@@ -15,5 +15,8 @@ class PasajerosBusquedaForm(ModelForm):
     
     class Meta:
         model = Pasajeros
-
+    
         fields = ["nombrepax"]
+
+
+        #nombrepax = forms.CharField(label="Nombre del pasajero", max_length=50)
