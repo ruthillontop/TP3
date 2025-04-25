@@ -4,14 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Llontop - Aerolínea{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             color: #333;
+            margin: 0;
+            padding: 0;
         }
+
+        /* Header superior modificado */
+        .header-top {
+            background-color: #001f4d;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            flex: 1;
+            text-align: left;
+        }
+
+        .header-center {
+            flex: 1;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .header-right {
+            flex: 1;
+            text-align: right;
+        }
+
+        .header-top h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .header-top p {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .login-button {
+            background-color: #004080;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-button i {
+            margin-right: 0.5rem;
+        }
+
+        /* Navbar */
         .navbar {
             background-color: #003366;
             padding: 1rem;
@@ -20,18 +75,26 @@
             align-items: center;
             gap: 30px;
         }
+
         .menu {
             position: relative;
         }
+
         .menu > a {
             color: #f2f2f2;
             text-decoration: none;
             font-size: 1.1rem;
             padding: 5px;
         }
+
+        .menu > a.active {
+            color: #ccc;
+        }
+
         .menu:hover > a {
             color: #ffffff;
         }
+
         .submenu {
             display: none;
             position: absolute;
@@ -42,18 +105,22 @@
             border-radius: 4px;
             z-index: 1000;
         }
+
         .submenu a {
             display: block;
             color: #f2f2f2;
             text-decoration: none;
             padding: 5px 10px;
         }
+
         .submenu a:hover {
             background-color: #0059b3;
         }
+
         .menu:hover .submenu {
             display: block;
         }
+
         .container {
             margin: 20px;
             padding: 20px;
@@ -64,10 +131,26 @@
 </head>
 <body>
 
+    <!-- Header superior -->
+    <div class="header-top">
+        <div class="header-left">
+            <h1>Aerolínea Llontop</h1>
+        </div>
+        <div class="header-center">
+            <p><em>On top of the world</em></p>
+        </div>
+        <div class="header-right">
+            <button class="login-button">
+                <i class="fas fa-user"></i> Log in
+            </button>
+        </div>
+    </div>
+
+    <!-- Navbar -->
     <header>
         <div class="navbar">
             <div class="menu">
-                <a href="{% url 'empleados:index_empleados' %}">Empleados</a>
+                <a href="{% url 'empleados:index_empleados' %}" class="{% if request.resolver_match.app_name == 'empleados' %}active{% endif %}">Empleados</a>
                 <div class="submenu">
                     <a href="{% url 'empleados:alta-empleados' %}">Alta Empleados</a>
                     <a href="{% url 'empleados:buscar-empleados' %}">Buscar Empleados</a>
@@ -76,7 +159,7 @@
             </div>
 
             <div class="menu">
-                <a href="{% url 'pasajeros:index_pasajeros' %}">Pasajeros</a>
+                <a href="{% url 'pasajeros:index_pasajeros' %}" class="{% if request.resolver_match.app_name == 'pasajeros' %}active{% endif %}">Pasajeros</a>
                 <div class="submenu">
                     <a href="{% url 'pasajeros:alta-pasajeros' %}">Alta Pasajeros</a>
                     <a href="{% url 'pasajeros:buscar-pasajeros' %}">Buscar Pasajeros</a>
@@ -85,7 +168,7 @@
             </div>
 
             <div class="menu">
-                <a href="{% url 'destinos:index_destinos' %}">Destinos</a>
+                <a href="{% url 'destinos:index_destinos' %}" class="{% if request.resolver_match.app_name == 'destinos' %}active{% endif %}">Destinos</a>
                 <div class="submenu">
                     <a href="{% url 'destinos:alta-destinos' %}">Alta Destinos</a>
                     <a href="{% url 'destinos:buscar-destinos' %}">Buscar Destinos</a>

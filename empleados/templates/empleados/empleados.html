@@ -2,4 +2,10 @@
 
 {% block aerolinea %}
     <h2>Bienvenidos a la sección de empleados</h2>
+
+    <div class="nav-title">⚙️ Funciones con Vistas Basadas en Clases (CBV)</div>
+    <nav>
+        <a href="{% url 'empleados:cbv-alta-empleados' %}">CBV Alta</a>
+        <a href="{% url 'empleados:cbv-employee-list' %}">CBV Lista</a>
+
 {% endblock %}

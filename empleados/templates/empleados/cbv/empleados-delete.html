@@ -1,0 +1,15 @@
+{% extends 'empleados/base.html' %}
+
+{% block aerolinea %}
+<h3 > Confirmar eliminación del empleado</h3>
+
+<div style="max-width: 500px; margin: 2rem auto; text-align: center;">
+    <p>¿Estás seguro que deseas eliminar al empleado <strong>{{ object.nombreempleado }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="background: crimson; color: white; padding: 0.5rem 1rem;">🗑 Sí, eliminar</button>
+        <a href="{% url 'hospital:cbv-lista-medico' %}" style="margin-left: 1rem;">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

@@ -6,50 +6,12 @@
     <title>{% block title %}Llontop - Aerolínea{% endblock %}</title>
 
     <style>
+        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             color: #333;
-            margin: 0;
         }
-
-        /* HEADER SUPERIOR */
-        .top-header {
-            background-color: #ffffff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            border-bottom: 2px solid #ccc;
-        }
-
-        .logo {
-            font-family: "Helvetica", sans-serif;
-            font-weight: bold;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .slogan {
-            font-family: "Helvetica Neue", sans-serif;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .login-box {
-            background-color: #003366;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-family: "Helvetica Neue", sans-serif;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        /* NAVBAR */
         .navbar {
             background-color: #003366;
             padding: 1rem;
@@ -58,22 +20,18 @@
             align-items: center;
             gap: 30px;
         }
-
         .menu {
             position: relative;
         }
-
         .menu > a {
             color: #f2f2f2;
             text-decoration: none;
             font-size: 1.1rem;
             padding: 5px;
         }
-
         .menu:hover > a {
             color: #ffffff;
         }
-
         .submenu {
             display: none;
             position: absolute;
@@ -84,22 +42,18 @@
             border-radius: 4px;
             z-index: 1000;
         }
-
         .submenu a {
             display: block;
             color: #f2f2f2;
             text-decoration: none;
             padding: 5px 10px;
         }
-
         .submenu a:hover {
             background-color: #0059b3;
         }
-
         .menu:hover .submenu {
             display: block;
         }
-
         .container {
             margin: 20px;
             padding: 20px;
@@ -110,17 +64,6 @@
 </head>
 <body>
 
-    <!-- HEADER SUPERIOR -->
-    <div class="top-header">
-        <div class="logo">AEROLINEA LLONTOP</div>
-        <div class="slogan">On top of the world</div>
-        <div class="login-box">
-            <span>👤</span>
-            <span>Log in</span>
-        </div>
-    </div>
-
-    <!-- MENÚ NAVBAR -->
     <header>
         <div class="navbar">
             <div class="menu">

@@ -1,0 +1,16 @@
+{% extends 'empleados/base.html' %}
+
+{% block aerolinea %}
+<h3 > Detalle del empleado</h3>
+
+<div style="max-width: 400px; margin: 2rem auto; text-align: center;">
+    <p><strong>Nombre:</strong> {{ object.nombreempleado }}</p>
+    <p><strong>Email:</strong> {{ object.email }}</p>
+    <p><strong>Antigüedad:</strong> {{ object.antiguedad }} años</p>
+    <p><strong>Antigüedad:</strong> {{ object.tipo }} </p>
+
+    <a href="{% url 'empleado:cbv-empleado-editar' object.pk %}">✏️ Editar</a> |
+    <a href="{% url 'empleado:cbv-empleado-eliminar' object.pk %}">🗑 Eliminar</a> |
+    <a href="{% url 'empleado:cbv-lista-empleado' %}">🔙 Volver a la lista</a>
+</div>
+{% endblock %}

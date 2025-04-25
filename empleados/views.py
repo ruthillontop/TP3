@@ -4,9 +4,13 @@ from empleados.models import Empleados
 
 from empleados.forms import EmpleadosForm, EmpleadosBusquedaForm
 from django.shortcuts import redirect
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
 
 def empleados(request):
     return render(request, 'empleados/empleados.html')
+
+def home (request):
+    return render (request,'empleados/home.html')
 
 def alta_empleados(request):
 
@@ -66,3 +70,40 @@ def buscar_empleados(request):
     
 
     
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
+
+
+class EmpleadosListView(ListView):
+    model = Empleados
+    template_name = 'empleados/cbv/employee-list.html'
+    context_object_name = 'empleados'
+
+
+class EmpleadosCreateView(CreateView):
+    model = Empleados
+    fields = ['nombreempleado', 'email', 'antiguedad', 'tipo']
+    template_name = "empleados/cbv/empleados-create.html"
+    success_url = "/empleados/cbv/alta-empleados" 
+
+
+
+class EmpleadosDetailView(DetailView):
+    model = Empleados
+    template_name = "empleados/cbv/empleados-detail.html"
+
+
+class EmpleadosUpdateView(UpdateView):
+    model = Empleados
+    fields = ['nombreempleado', 'email', 'antiguedad','tipo']
+    template_name = "empleados/cbv/empleados-update.html"
+    success_url = "/empleados/cbv/lista-empleados"
+
+
+from django.urls import reverse_lazy
+
+
+class EmpleadosDeleteView(DeleteView):
+    model = Empleados
+    template_name = "empleados/cbv/empleados-delete.html"
+    # success_url = "empleados/lista-empleados"
+    success_url = reverse_lazy("empleados:cbv-lista-empleados")

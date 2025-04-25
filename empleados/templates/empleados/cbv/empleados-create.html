@@ -1,0 +1,15 @@
+{% extends 'empleados/base.html' %}
+
+{% block aerolinea %}
+
+<h3 >📋 Alta del empleado (CBV)</h3>
+
+<form method="post" style="max-width: 500px; margin: 2rem auto;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div style="text-align: center; margin-top: 1rem;">
+        <button type="submit" style="padding: 0.5rem 1rem;">✅ Dar de alta</button>
+    </div>
+</form>
+
+{% endblock %}
