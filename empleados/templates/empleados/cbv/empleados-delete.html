@@ -9,7 +9,7 @@
     <form method="post">
         {% csrf_token %}
         <button type="submit" style="background: crimson; color: white; padding: 0.5rem 1rem;">🗑 Sí, eliminar</button>
-        <a href="{% url 'hospital:cbv-lista-medico' %}" style="margin-left: 1rem;">Cancelar</a>
+        <a href="{% url 'empleados:cbv-lista-empleados' %}" style="margin-left: 1rem;">Cancelar</a>
     </form>
 </div>
 {% endblock %}

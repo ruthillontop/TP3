@@ -9,8 +9,9 @@
     <p><strong>Antigüedad:</strong> {{ object.antiguedad }} años</p>
     <p><strong>Antigüedad:</strong> {{ object.tipo }} </p>
 
-    <a href="{% url 'empleado:cbv-empleado-editar' object.pk %}">✏️ Editar</a> |
-    <a href="{% url 'empleado:cbv-empleado-eliminar' object.pk %}">🗑 Eliminar</a> |
-    <a href="{% url 'empleado:cbv-lista-empleado' %}">🔙 Volver a la lista</a>
+    <a href="{% url 'empleados:cbv-empleados-editar' object.pk %}">✏️ Editar</a> |
+    <a href="{% url 'empleados:cbv-empleados-eliminar' object.pk %}">🗑 Eliminar</a> |
+    <a href="{% url 'empleados:cbv-employee-list' %}">🔙 Volver a la lista</a>
+
 </div>
 {% endblock %}

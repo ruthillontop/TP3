@@ -7,9 +7,9 @@
     {% for empleado in empleados %}
         <li style="margin-bottom: 1rem;">
             <strong>{{ empleado.nombreempleado }}</strong> ({{ empleado.email }} {{ empleado.tipo }}) {{ empleado.antiguedad }} años de antigüedad<br>
-            <a href="{% url 'empleados:cbv-empleado-detail' empleado.pk %}"> 🔍 </a> |
-            <a href="{% url 'empleados:cbv-empleado-editar' empleado.pk %}"> ✏️ </a> |
-            <a href="{% url 'empleados:cbv-empleado-eliminar' empleado.pk %}"> 🗑 </a>
+            <a href="{% url 'empleados:cbv-empleados-detail' empleado.pk %}"> 🔍 </a> |
+            <a href="{% url 'empleados:cbv-empleados-editar' empleado.pk %}"> ✏️ </a> |
+            <a href="{% url 'empleados:cbv-empleados-eliminar' empleado.pk %}"> 🗑 </a>
         </li>
     {% empty %}
         <li>No hay empleados registrados.</li>

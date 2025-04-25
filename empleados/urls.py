@@ -14,7 +14,7 @@ urlpatterns = [
     path('buscar/', buscar_empleados, name='buscar-empleados'),
     
     path("home", home, name="home"),
-    path("cbv/empleados-create", EmpleadosCreateView.as_view(), name="cbv-alta-empleados"),
+    path("cbv/alta-empleados", EmpleadosCreateView.as_view(), name="cbv-alta-empleados"),
     path("cbv/employee-list", EmpleadosListView.as_view(), name="cbv-employee-list"),
     path("cbv/empleados/<int:pk>", EmpleadosDetailView.as_view(), name="cbv-empleados-detail"),
     path("cbv/empleados/<int:pk>/editar", EmpleadosUpdateView.as_view(), name="cbv-empleados-editar"),
