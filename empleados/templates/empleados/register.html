@@ -1,0 +1,22 @@
+{% extends 'empleados/base.html' %}
+
+{% block aerolinea %}
+  <h2>Registro de usuario</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit" style="padding: 0.5rem 1rem; background-color: #004080; color: white; border: none; border-radius: 4px; cursor: pointer;">
+      Registrarse
+    </button>
+  </form>
+
+  <p>
+    ¿Ya tenés cuenta? <a href="{% url 'login' %}">Iniciar sesión aquí</a>.
+  </p>
+
+  <p>
+    ¿No tienes una cuenta? <a href="{% url 'register' %}">Regístrate aquí</a>.
+  </p>
+{% endblock %}

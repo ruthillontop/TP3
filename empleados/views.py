@@ -1,10 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from empleados.models import Empleados
 
 from empleados.forms import EmpleadosForm, EmpleadosBusquedaForm
-from django.shortcuts import redirect
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
+from django.urls import reverse_lazy
+
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+
 
 def empleados(request):
     return render(request, 'empleados/empleados.html')
@@ -12,6 +16,7 @@ def empleados(request):
 def home (request):
     return render (request,'empleados/home.html')
 
+@login_required
 def alta_empleados(request):
 
     if request.method == "GET":
@@ -70,7 +75,9 @@ def buscar_empleados(request):
     
 
     
-from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView, TemplateView
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class EmpleadosListView(ListView):
@@ -79,12 +86,12 @@ class EmpleadosListView(ListView):
     context_object_name = 'empleados'
 
 
-class EmpleadosCreateView(CreateView):
+class EmpleadosCreateView(LoginRequiredMixin, CreateView):
     model = Empleados
     fields = ['nombreempleado', 'email', 'antiguedad', 'tipo']
     template_name = "empleados/cbv/empleados-create.html"
-    success_url = "/empleados/cbv/alta-empleados" 
-
+    success_url = reverse_lazy('empleados:cbv-alta-empleados')
+    login_url = 'login'
 
 
 class EmpleadosDetailView(DetailView):
@@ -94,16 +101,33 @@ class EmpleadosDetailView(DetailView):
 
 class EmpleadosUpdateView(UpdateView):
     model = Empleados
-    fields = ['nombreempleado', 'email', 'antiguedad','tipo']
-    template_name = "empleados/cbv/empleados-update.html"
-    success_url = "/empleados/cbv/lista-empleados"
+    fields = ["nombreempleado", "email", "antiguedad", "tipo"]
+    template_name = "empleados/cbv/empleados-edit.html" 
+    success_url = reverse_lazy("empleados:cbv-employee-list")
 
 
-from django.urls import reverse_lazy
+
 
 
 class EmpleadosDeleteView(DeleteView):
     model = Empleados
-    template_name = "empleados/cbv/empleados-delete.html"
-    # success_url = "empleados/lista-empleados"
-    success_url = reverse_lazy("empleados:cbv-lista-empleados")
+    template_name = "empleados/cbv/empleados-eliminar.html"
+    success_url = reverse_lazy("empleados:cbv-employee-list")
+
+class HomeView(TemplateView):
+    template_name = "empleados/home.html"
+
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  
+    else:
+        form = UserCreationForm()
+    return render(request, 'empleados/register.html', {'form': form})
+
+def acerca_de_mi(request):
+    return render(request, 'empleados/acerca.html')

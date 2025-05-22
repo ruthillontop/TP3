@@ -1,1 +1,25 @@
-esta es la home 
+{% extends 'empleados/base.html' %}
+
+
+{% block aerolinea %}
+    <h2>Bienvenidos a la página principal de la Aerolínea Llontop ✈️</h2>
+
+    <p>
+        Esta es una aerolínea que refleja mucho trabajo por detrás para poder conseguir lo deseado en esta entrega final.
+    </p>
+
+    <p>
+        En esta página podrás iniciar sesión usando el botón de la derecha. Una vez logueado, podrás realizar altas de empleados. Si no estás logueado, no podrás hacer el alta. El sitio te llevará a la página de log in para que puedas ingresar a tu cuenta. Luego, podrás dar de alta a empleados.
+    </p>
+
+    {% if not user.is_authenticated %}
+        <p>
+            Si aún no tenés un usuario, podés crearlo tocando el siguiente botón:
+        </p>
+        <a href="{% url 'login' %}" style="display: inline-block; background-color: #004080; color: white; padding: 0.6rem 1.2rem; border-radius: 5px; text-decoration: none;">
+            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </a>
+    {% else %}
+        <p>¡Hola {{ user.username }}! Ya estás logueado.</p>
+    {% endif %}
+{% endblock %}

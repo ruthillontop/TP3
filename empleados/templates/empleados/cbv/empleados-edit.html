@@ -1,0 +1,13 @@
+{% extends 'empleados/base.html' %}
+
+{% block aerolinea %}
+<h3> Editar empleado</h3>
+
+<form method="post" style="max-width: 500px; margin: 2rem auto;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div style="text-align: center; margin-top: 1rem;">
+        <button type="submit">💾 Guardar cambios</button>
+    </div>
+</form>
+{% endblock %}

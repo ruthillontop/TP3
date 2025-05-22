@@ -15,7 +15,6 @@
             padding: 0;
         }
 
-        /* Header superior modificado */
         .header-top {
             background-color: #001f4d;
             color: white;
@@ -39,17 +38,7 @@
         .header-right {
             flex: 1;
             text-align: right;
-        }
-
-        .header-top h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-
-        .header-top p {
-            margin: 0;
-            font-size: 1.3rem;
-            font-weight: bold;
+            position: relative;
         }
 
         .login-button {
@@ -66,14 +55,62 @@
             margin-right: 0.5rem;
         }
 
-        /* Navbar */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: #004080;
+            min-width: 160px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+        }
+
+        .dropdown-content a,
+        .dropdown-content form button {
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .dropdown-content a:hover,
+        .dropdown-content form button:hover {
+            background-color: #0059b3;
+        }
+
+        .header-right:hover .dropdown-content {
+            display: block;
+        }
+
         .navbar {
             background-color: #003366;
             padding: 1rem;
             display: flex;
-            justify-content: flex-start;
+            justify-content: space-between; /* para separar izquierda y derecha */
             align-items: center;
             gap: 30px;
+        }
+
+        /* Contenedor para menú a la izquierda */
+        .navbar-left {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Contenedor para menú a la derecha */
+        .navbar-right {
+            display: flex;
+            gap: 30px;
+            align-items: center;
         }
 
         .menu {
@@ -140,47 +177,81 @@
             <p><em>On top of the world</em></p>
         </div>
         <div class="header-right">
-            <button class="login-button">
-                <i class="fas fa-user"></i> Log in
-            </button>
+            {% if user.is_authenticated %}
+                <button class="login-button"><i class="fas fa-user"></i> {{ user.username }}</button>
+                <div class="dropdown-content">
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Cerrar sesión</button>
+                    </form>
+                </div>
+            {% else %}
+                <button class="login-button"><i class="fas fa-user"></i> Cuenta</button>
+                <div class="dropdown-content">
+                    <a href="{% url 'login' %}">Iniciar sesión</a>
+                    <a href="{% url 'register' %}">Registrarse</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 
     <!-- Navbar -->
     <header>
         <div class="navbar">
-            <div class="menu">
-                <a href="{% url 'empleados:index_empleados' %}" class="{% if request.resolver_match.app_name == 'empleados' %}active{% endif %}">Empleados</a>
-                <div class="submenu">
-                    <a href="{% url 'empleados:alta-empleados' %}">Alta Empleados</a>
-                    <a href="{% url 'empleados:buscar-empleados' %}">Buscar Empleados</a>
-                    <a href="{% url 'empleados:lista-empleados' %}">Lista de Empleados</a>
+            <div class="navbar-left">
+                <div class="menu">
+                    <a href="{% url 'empleados:index_empleados' %}" class="{% if request.resolver_match.app_name == 'empleados' %}active{% endif %}">Empleados</a>
+                    <div class="submenu">
+                        <a href="{% url 'empleados:alta-empleados' %}">Alta Empleados</a>
+                        <a href="{% url 'empleados:buscar-empleados' %}">Buscar Empleados</a>
+                        <a href="{% url 'empleados:lista-empleados' %}">Lista de Empleados</a>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <a href="{% url 'pasajeros:index_pasajeros' %}" class="{% if request.resolver_match.app_name == 'pasajeros' %}active{% endif %}">Pasajeros</a>
+                    <div class="submenu">
+                        <a href="{% url 'pasajeros:alta-pasajeros' %}">Alta Pasajeros</a>
+                        <a href="{% url 'pasajeros:buscar-pasajeros' %}">Buscar Pasajeros</a>
+                        <a href="{% url 'pasajeros:lista-pasajeros' %}">Lista de Pasajeros</a>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <a href="{% url 'destinos:index_destinos' %}" class="{% if request.resolver_match.app_name == 'destinos' %}active{% endif %}">Destinos</a>
+                    <div class="submenu">
+                        <a href="{% url 'destinos:alta-destinos' %}">Alta Destinos</a>
+                        <a href="{% url 'destinos:buscar-destinos' %}">Buscar Destinos</a>
+                        <a href="{% url 'destinos:lista-destinos' %}">Lista de Destinos</a>
+                    </div>
+                </div>
+
+                <div class="menu">
+                    <a href="{% url 'empleados:cbv-employee-list' %}" class="{% if request.resolver_match.url_name == 'cbv-employee-list' %}active{% endif %}">CBV</a>
                 </div>
             </div>
 
-            <div class="menu">
-                <a href="{% url 'pasajeros:index_pasajeros' %}" class="{% if request.resolver_match.app_name == 'pasajeros' %}active{% endif %}">Pasajeros</a>
-                <div class="submenu">
-                    <a href="{% url 'pasajeros:alta-pasajeros' %}">Alta Pasajeros</a>
-                    <a href="{% url 'pasajeros:buscar-pasajeros' %}">Buscar Pasajeros</a>
-                    <a href="{% url 'pasajeros:lista-pasajeros' %}">Lista de Pasajeros</a>
-                </div>
-            </div>
+            <div class="navbar-right">
+                <div class="menu">
+                    <a href="{% url 'empleados:acerca_de_mi' %}" class="{% if request.resolver_match.url_name == 'acerca_de_mi' %}active{% endif %}">Acerca de mí</a>
 
-            <div class="menu">
-                <a href="{% url 'destinos:index_destinos' %}" class="{% if request.resolver_match.app_name == 'destinos' %}active{% endif %}">Destinos</a>
-                <div class="submenu">
-                    <a href="{% url 'destinos:alta-destinos' %}">Alta Destinos</a>
-                    <a href="{% url 'destinos:buscar-destinos' %}">Buscar Destinos</a>
-                    <a href="{% url 'destinos:lista-destinos' %}">Lista de Destinos</a>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Contenido principal -->
     <div class="container">
         {% block aerolinea %}
         {% endblock %}
+
+        {% if not request.resolver_match.url_name == 'home' %}
+        <div style="margin-top: 2rem;">
+            <a href="{% url 'home' %}" style="display: inline-block; background-color: #ccc; color: black; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none;">
+                ⬅️ Volver al Home
+            </a>
+        </div>
+        {% endif %}
     </div>
 
 </body>

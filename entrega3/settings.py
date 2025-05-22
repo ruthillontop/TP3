@@ -71,6 +71,10 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/empleados/home/'
+LOGOUT_REDIRECT_URL = 'home'
+
 WSGI_APPLICATION = 'entrega3.wsgi.application'
 
 
